@@ -1,0 +1,35 @@
+#! /bin/bash
+
+projectName=$1
+temp=$2
+
+
+
+if [[ -d $projectName ]]
+then
+    echo "This directory is exist already in your current directory."
+else
+    mkdir $projectName
+    mkdir $projectName/css
+    mkdir $projectName/scripts
+    mkdir $projectName/lib
+    mkdir $projectName/images
+
+    touch $projectName/"index.html"
+    touch $projectName/css/"style.css"
+    touch $projectName/scripts/"script.js"
+    indexFile=$projectName/"index.html"
+
+if [[ $temp == '' ]]
+then
+    cat ~/dev/bash_scripts/html-temp/htmltemp_default.txt >> $indexFile
+elif [[ $temp == 'three' ]]
+then
+    cat ~/dev/bash_scripts/html-temp/htmltemp_threejs.txt > $indexFile
+elif [[ $temp == 'bootstrap' ]]
+then
+    cat ~/dev/bash_scripts/html-temp/htmltemp_bootstrap.txt > $indexFile
+fi
+echo "Skeleton Ready."
+
+fi
